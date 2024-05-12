@@ -5,7 +5,7 @@ import React from 'react'
 
 function BusinessList({businessList,title}) {
   return (
-    <div className='mt-5'>
+    <div className='mt-10'>
         <h2 className='font-bold text-[22px]'>{title}</h2>
         <div className='grid grid-cols-2 md:grid-cols-3
         lg:grid-cols-4 gap-6 mt-5 '>
@@ -14,7 +14,7 @@ function BusinessList({businessList,title}) {
                 key={index} className='shadow-md 
                 rounded-lg hover:shadow-lg cursor-pointer
                  hover:shadow-primary
-                 hover:scale-105 transition-all ease-in-out'>
+                 hover:scale-105 transition-all ease-in-out mb-12'>
                     <Image src={business?.images[0].url}
                     alt={business.name}
                     width={500}
@@ -30,7 +30,7 @@ function BusinessList({businessList,title}) {
                         <h2 className='font-bold text-lg'>{business.name}</h2>
                         <h2 className='text-primary'>{business.contactPerson}</h2>
                         <h2 className='text-gray-500 text-sm'>{business.address}</h2>
-                        <Button className="rounded-lg mt-3">Book Now</Button>
+                        <Button className="rounded-lg mt-3 mb-3">Book Now</Button>
                     </div>
                 </Link>
             ))
