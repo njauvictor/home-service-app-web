@@ -46,7 +46,7 @@ export const authOptions = {
                         headers: {"Content-Type": "application/x-www-form-urlencoded"},
                         body: new URLSearchParams({
                             client_id: "P2gAEAKxfBkaU5rRRnDXyqnTQyLm",
-                            client_secret: process.env.CLIENT_SECRET,
+                            client_secret: "<Descope Access Key>",
                             grant_type: "refresh_token",
                             refresh_token: token.refresh_token,
                         }),
