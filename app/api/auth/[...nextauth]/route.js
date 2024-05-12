@@ -79,8 +79,12 @@ export const authOptions = {
             session.accessToken = token.access_token
             return session
         },
-    }
+    },
+
+    secret: process.env.NEXTAUTH_SECRET,
 }  
+
+
 
 
 const handler = NextAuth(authOptions)
