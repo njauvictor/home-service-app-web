@@ -6,7 +6,7 @@ import React from 'react'
 function Hero() {
   return (
     <div className='flex items-center gap-3 flex-col justify-center pt-14 pb-7'>
-        <h2 className='font-bold text-[44px] text-center'>
+<h2 className='text-[44px] text-center font-bold'>
             Find Any 
             <span className='text-primary'> <br></br>Business </span> or <span className='text-primary'> Services</span>
             <br></br> in Molo</h2>
