@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { useSession } from 'next-auth/react';
 import { toast } from 'sonner';
-import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
 import {
     Sheet,
     SheetClose,
@@ -19,7 +18,6 @@ const initialContactState = {
     Email: '',
     Phone_Number: '',
     Address: '',
-    
 };
 
 const ContactInput = ({ name, value, onChange }) => (
@@ -34,10 +32,12 @@ const ContactInput = ({ name, value, onChange }) => (
 );
 
 const SocialMediaIcons = () => (
-    <div className="flex justify-around my-4">
-        <FaFacebook />
-        <FaTwitter />
-        <FaInstagram />
+    <div className="flex justify-start my-4 gap-4">
+        <img src="https://simpleicons.org/icons/facebook.svg" className="h-8 w-8 text-blue-600" alt="Facebook" fill="currentColor" />
+        <img src="https://simpleicons.org/icons/twitter.svg" className="h-8 w-8 text-blue-400" alt="Twitter" fill="currentColor" />
+        <img src="https://simpleicons.org/icons/instagram.svg" className="h-8 w-8 text-pink-500" alt="Instagram" fill="currentColor" />
+        <img src="https://simpleicons.org/icons/whatsapp.svg" className="h-8 w-8 text-green-500" alt="WhatsApp" fill="currentColor" />
+        <img src="https://simpleicons.org/icons/tiktok.svg" className="h-8 w-8 text-black" alt="TikTok" fill="currentColor" />
     </div>
 );
 
@@ -63,7 +63,7 @@ function BookingSection({ children, business }) {
                 <SheetTrigger asChild>
                     {children}
                 </SheetTrigger>
-                <SheetContent className="overflow-auto">
+                <SheetContent className="overflow-auto p-20">
                     <SheetHeader>
                         <SheetTitle>Contact Us</SheetTitle>
                         <SheetDescription>
@@ -78,13 +78,13 @@ function BookingSection({ children, business }) {
                         </SheetDescription>
                     </SheetHeader>
                     <SheetFooter className="mt-5">
-                        <SheetClose asChild>
-                            <div className='flex gap-5'>
-                                <Button variant="destructive" className="primary-font primary-styling">Cancel</Button>
-                                <Button onClick={saveContact} className="primary-font primary-styling">Submit</Button>
-                            </div>
-                        </SheetClose>
-                    </SheetFooter>
+    <SheetClose asChild>
+        <div className='flex gap-3'>
+            <Button variant="destructive" className="primary-font primary-styling">Cancel</Button>
+            <Button onClick={saveContact} className="primary-font primary-styling">Submit</Button>
+        </div>
+    </SheetClose>
+</SheetFooter>
                 </SheetContent>
             </Sheet>
         </div>

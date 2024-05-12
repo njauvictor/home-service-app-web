@@ -1,8 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
- 
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -73,6 +72,6 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter Outfit', sans-serif !important;
+   
   }
 }
