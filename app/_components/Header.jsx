@@ -24,8 +24,8 @@ function Header() {
   return (
     <div className='p-5 shadow-sm flex justify-between items-center'>
         <div>
-            <Image src='/logo-v1.svg' alt='logo'
-            width={180} height={100} />
+            <Image src='/logo-molo.svg' alt='logo'
+            width={240} height={60} />
         </div>
         <div className='hidden md:flex justify-center items-center gap-6 flex-grow'>
             <Link href={'/'} className='hover:scale-105 hover:text-primary
