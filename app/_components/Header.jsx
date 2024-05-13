@@ -94,7 +94,7 @@ function Header() {
               <>
                 <div className="max-h-80 overflow-y-auto">
                   <Link href="/">
-                    <DropdownMenuLabel className="text-center text-white bg-primary rounded-lg">
+                    <DropdownMenuLabel className="text-center text-white bg-green-600 opacity-80 rounded-md mt-2 mx-2">
                       Register a Business
                     </DropdownMenuLabel>
                   </Link>
@@ -113,7 +113,7 @@ function Header() {
                     </Link>
                   ))}
                 </div>
-                <DropdownMenuItem className="bg-primary text-white justify-center" onClick={() => signOut()}>
+                <DropdownMenuItem className=" mx-5 bg-primary text-white justify-center mt-3 mb-3" onClick={() => signOut()}>
                   Logout
                 </DropdownMenuItem>
               </>
@@ -136,7 +136,7 @@ function Header() {
                   ))}
                 </div>
                 <DropdownMenuItem
-                  className="bg-primary text-white justify-center"
+                  className="bg-primary text-white justify-center mt-3 mx-5 mb-3" 
                   onClick={() => signIn('descope')}
                 >
                   Login/Signup
