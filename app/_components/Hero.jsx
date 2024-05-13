@@ -8,9 +8,9 @@ function Hero() {
     <div className='flex items-center gap-3 flex-col justify-center pt-14 pb-7'>
 <h2 className='text-[44px] text-center font-bold'>
             Find Any 
-            <span className='text-primary'> <br></br>Business </span> or <span className='text-primary'> Services</span>
-            <br></br> in Molo</h2>
-        <h2 className='text-xl text-gray-400'>Explore Business and Services Near You</h2>
+            <span className='text-primary'> <br></br>Business </span> or <span className='text-primary'> Service</span>
+            <br></br>in Molo</h2>
+        <h2 className='text-xl text-gray-400'>Explore Businesses and Services Near You</h2>
         <div className='mt-4 flex gap-4 items-center'>
             <Input placeholder='Search'
             className="rounded-full md:w-[350px]" />

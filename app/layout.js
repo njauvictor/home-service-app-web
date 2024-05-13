@@ -8,7 +8,7 @@ import { Toaster } from "@/components/ui/sonner";
 const inter = Outfit({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Nyumbani | Molo Business Directory",
+  title: "Molo Pages | Molo Business Directory",
   description: "Find Any Businesses or Services in Molo",
 };
 

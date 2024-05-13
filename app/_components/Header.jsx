@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { signIn, signOut, useSession } from 'next-auth/react'
 import Image from 'next/image'
 import React, { useEffect } from 'react'
+
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -23,10 +24,14 @@ function Header() {
 
   return (
     <div className='p-5 shadow-sm flex justify-between items-center'>
-        <div>
-            <Image src='/logo-molo.svg' alt='logo'
-            width={240} height={60} />
-        </div>
+    <div className="flex items-center">
+   <img src="/location.png" alt="Logo Icon" className="h-8 w-8 sm:h-12 sm:w-12 mr-2" />
+    <div>
+        <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-primary font-bold">molo pages</h1>
+        <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm text-primary opacity-70">Molo Business Directory</p>
+    </div>
+</div>
+            
         <div className='hidden md:flex justify-center items-center gap-6 flex-grow'>
             <Link href={'/'} className='hover:scale-105 hover:text-primary
             cursor-pointer'>Home</Link>
