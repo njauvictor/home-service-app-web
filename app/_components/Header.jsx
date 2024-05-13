@@ -65,33 +65,39 @@ function Header() {
         </div>
       </div>
       <div className="hidden md:flex justify-center items-center gap-6 flex-grow">
-  <Link href={'/'} className="text-inherit hover:text-primary">Home</Link>
-  <Link href={'/about'} className="text-inherit hover:text-primary">About Us</Link>
-  <Link href={'/about'} className="text-inherit hover:text-primary">MarketPlace</Link>
-  <Link href={'/services'} className="text-inherit hover:text-primary">Business Registration</Link>
-</div>
+        <Link href={'/'} className="text-inherit hover:text-primary">
+          Home
+        </Link>
+        <Link href={'/about'} className="text-inherit hover:text-primary">
+          About Us
+        </Link>
+        <Link href={'/about'} className="text-inherit hover:text-primary">
+          MarketPlace
+        </Link>
+        <Link href={'/services'} className="text-inherit hover:text-primary">
+          Business Registration
+        </Link>
+      </div>
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           {session ? (
-            <Button onClick={toggleMenu}>
-            &#8659; {isSmallScreen ? 'Menu' : 'My Account'}  {/* Downward pointing triangle unicode character */}
-          </Button>
-          
+            <Button onClick={toggleMenu}>&#8659; {isSmallScreen ? 'Menu' : 'My Account'}</Button>
           ) : (
-            <Button onClick={toggleMenu}> &#8659; {isSmallScreen ? 'Menu' : 'Menu/Login/SignUp'}</Button>
+            <Button onClick={toggleMenu}>&#8659; {isSmallScreen ? 'Menu' : 'Menu/Login/SignUp'}</Button>
           )}
         </DropdownMenuTrigger>
-        
+
         {showMenu && (
           <DropdownMenuContent>
             {session && (
               <>
-                <div>
-                 
+                <div className="max-h-60 overflow-y-auto">
                   <Link href="/">
-  <DropdownMenuLabel className="text-center text-white bg-primary rounded-lg">Register a Business</DropdownMenuLabel>
-</Link>
+                    <DropdownMenuLabel className="text-center text-white bg-primary rounded-lg">
+                      Register a Business
+                    </DropdownMenuLabel>
+                  </Link>
 
                   <DropdownMenuSeparator />
                   {categoryList.map((category, index) => (
@@ -107,13 +113,15 @@ function Header() {
                     </Link>
                   ))}
                 </div>
-                <DropdownMenuItem className='bg-primary text-white justify-center' onClick={() => signOut()}>Logout</DropdownMenuItem>
+                <DropdownMenuItem className="bg-primary text-white justify-center" onClick={() => signOut()}>
+                  Logout
+                </DropdownMenuItem>
               </>
             )}
 
             {!session && (
               <>
-                <div>
+                <div className="max-h-60 overflow-y-auto">
                   {categoryList.map((category, index) => (
                     <Link
                       href={'/search/' + category.name}
@@ -136,12 +144,7 @@ function Header() {
               </>
             )}
           </DropdownMenuContent>
-
-          
-
         )}
-
-        
       </DropdownMenu>
     </div>
   );
