@@ -59,7 +59,7 @@ function Header() {
           <h1 className="text-xl sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-primary font-bold">
             molo pages
           </h1>
-          <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm ml-3 text-primary opacity-70">
+          <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm text-primary opacity-70">
             Molo Business Directory
           </p>
         </div>
