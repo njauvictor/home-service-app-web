@@ -52,7 +52,7 @@ function Header() {
   };
 
   return (
-    <div className="p-5 shadow-sm flex justify-between items-center">
+    <div className="p-5 shadow-sm flex justify-between items-center mt-5">
       <div className="flex items-center">
         <img src="/location.png" alt="Logo Icon" className="h-6 w-6 sm:h-12 sm:w-12 mr-2" />
         <div>
