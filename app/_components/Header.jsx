@@ -27,7 +27,7 @@ function Header() {
     <div className="flex items-center">
    <img src="/location.png" alt="Logo Icon" className="h-8 w-8 sm:h-12 sm:w-12 mr-2" />
     <div>
-        <h1 className="text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl text-primary font-bold">molo pages</h1>
+        <h1 className="text-xl sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-primary font-bold">molo pages</h1>
         <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm text-primary opacity-70">Molo Business Directory</p>
     </div>
 </div>
