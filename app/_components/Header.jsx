@@ -92,7 +92,7 @@ function Header() {
           <DropdownMenuContent>
             {session && (
               <>
-                <div className="max-h-60 overflow-y-auto">
+                <div className="max-h-80 overflow-y-auto">
                   <Link href="/">
                     <DropdownMenuLabel className="text-center text-white bg-primary rounded-lg">
                       Register a Business
@@ -121,7 +121,7 @@ function Header() {
 
             {!session && (
               <>
-                <div className="max-h-100 overflow-y-auto">
+                <div className="max-h-80 overflow-y-auto">
                   {categoryList.map((category, index) => (
                     <Link
                       href={'/search/' + category.name}
