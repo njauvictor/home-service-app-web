@@ -1,9 +1,11 @@
 "use client"
-import { Button } from '@/components/ui/button'
-import { signIn, signOut, useSession } from 'next-auth/react'
-import Image from 'next/image'
-import React, { useEffect } from 'react'
 
+import { Button } from '@/components/ui/button';
+import { signIn, signOut, useSession } from 'next-auth/react';
+import Image from 'next/image';
+import React, { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import GlobalApi from '@/app/_services/GlobalApi';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -11,66 +13,138 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import Link from 'next/link'
+} from '@/components/ui/dropdown-menu';
+import Link from 'next/link';
+import useWindowSize from '@/hooks/useWindowSize';
+import CategoryList from './CategoryList';
 
 function Header() {
+  const { data: session } = useSession();
+  const { width } = useWindowSize();
 
-  const {data}=useSession();
+  const [showMenu, setShowMenu] = useState(false);
+  const [categoryList, setCategoryList] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState();
+  const params = usePathname();
 
-  useEffect(()=>{
-    console.log(data);
-  },[data])
+  useEffect(() => {
+    getCategoryList();
+  }, []);
+
+  useEffect(() => {
+    setSelectedCategory(params?.split('/')[2]);
+  }, [params]);
+
+  /**
+   * Used to get All Category List
+   */
+  const getCategoryList = () => {
+    GlobalApi.getCategory().then((resp) => {
+      console.log(resp);
+      setCategoryList(resp.categories);
+    });
+  };
+
+  const isSmallScreen = width <= 768;
+
+  const toggleMenu = () => {
+    setShowMenu((prev) => !prev);
+  };
 
   return (
-    <div className='p-5 shadow-sm flex justify-between items-center'>
-    <div className="flex items-center">
-   <img src="/location.png" alt="Logo Icon" className="h-8 w-8 sm:h-12 sm:w-12 mr-2" />
-    <div>
-        <h1 className="text-xl sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-primary font-bold">molo pages</h1>
-        <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm text-primary opacity-70">Molo Business Directory</p>
-    </div>
-</div>
-            
-        <div className='hidden md:flex justify-center items-center gap-6 flex-grow'>
-            <Link href={'/'} className='hover:scale-105 hover:text-primary
-            cursor-pointer'>Home</Link>
-            <h2 className='hover:scale-105 hover:text-primary
-            cursor-pointer'>Services</h2>
-            <h2 className='hover:scale-105 hover:text-primary
-            cursor-pointer'>About Us</h2>
-        </div>
+    <div className="p-5 shadow-sm flex justify-between items-center">
+      <div className="flex items-center">
+        <img src="/location.png" alt="Logo Icon" className="h-6 w-6 sm:h-12 sm:w-12 mr-2" />
         <div>
-          {data?.user?
+          <h1 className="text-xl sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-primary font-bold">
+            molo pages
+          </h1>
+          <p className="text-xs sm:text-xs md:text-sm lg:text-sm xl:text-sm ml-3 text-primary opacity-70">
+            Molo Business Directory
+          </p>
+        </div>
+      </div>
+      <div className="hidden md:flex justify-center items-center gap-6 flex-grow">
+  <Link href={'/'} className="text-inherit hover:text-primary">Home</Link>
+  <Link href={'/about'} className="text-inherit hover:text-primary">About Us</Link>
+  <Link href={'/about'} className="text-inherit hover:text-primary">MarketPlace</Link>
+  <Link href={'/services'} className="text-inherit hover:text-primary">Business Registration</Link>
+</div>
+
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          {session ? (
+            <Button onClick={toggleMenu}>
+            &#8659; {isSmallScreen ? 'Menu' : 'My Account'}  {/* Downward pointing triangle unicode character */}
+          </Button>
           
-          <DropdownMenu>
-  <DropdownMenuTrigger asChild>
-  <Image src={data?.user?.image}
-          alt='user'
-          width={40}
-          height={40}
-          className='rounded-full'
-          />
-  </DropdownMenuTrigger>
-  <DropdownMenuContent>
-    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-    <DropdownMenuSeparator />
-    <DropdownMenuItem>
-     <Link href={'/mybooking'}>My Booking</Link> 
-      </DropdownMenuItem>
-    <DropdownMenuItem onClick={()=>signOut()}>Logout</DropdownMenuItem>
-   
-  </DropdownMenuContent>
-</DropdownMenu>
+          ) : (
+            <Button onClick={toggleMenu}> &#8659; {isSmallScreen ? 'Menu' : 'Menu/Login/SignUp'}</Button>
+          )}
+        </DropdownMenuTrigger>
+        
+        {showMenu && (
+          <DropdownMenuContent>
+            {session && (
+              <>
+                <div>
+                 
+                  <Link href="/">
+  <DropdownMenuLabel className="text-center text-white bg-primary rounded-lg">Register a Business</DropdownMenuLabel>
+</Link>
 
-          :  
+                  <DropdownMenuSeparator />
+                  {categoryList.map((category, index) => (
+                    <Link
+                      href={'/search/' + category.name}
+                      key={index}
+                      className={`flex gap-2 p-3 border rounded-lg mb-2 cursor-pointer hover:bg-purple-50 hover:shadow-md items-center hover:text-primary hover:border-primary ${
+                        selectedCategory == category.name &&
+                        'border-primary text-primary shadow-md bg-purple-60 items-center'
+                      }`}
+                    >
+                      <h2 className="text-sm item-center ml-2">{category.name}</h2>
+                    </Link>
+                  ))}
+                </div>
+                <DropdownMenuItem className='bg-primary text-white justify-center' onClick={() => signOut()}>Logout</DropdownMenuItem>
+              </>
+            )}
 
-          <Button onClick={()=>signIn('descope')}>Login / Sign Up</Button>
+            {!session && (
+              <>
+                <div>
+                  {categoryList.map((category, index) => (
+                    <Link
+                      href={'/search/' + category.name}
+                      key={index}
+                      className={`flex gap-2 p-3 border rounded-lg mb-3 cursor-pointer hover:bg-purple-50 hover:shadow-md items-center hover:text-primary hover:border-primary ${
+                        selectedCategory == category.name &&
+                        'border-primary text-primary shadow-md bg-purple-60 items-center'
+                      }`}
+                    >
+                      <h2 className="text-sm item-center ml-2">{category.name}</h2>
+                    </Link>
+                  ))}
+                </div>
+                <DropdownMenuItem
+                  className="bg-primary text-white justify-center"
+                  onClick={() => signIn('descope')}
+                >
+                  Login/Signup
+                </DropdownMenuItem>
+              </>
+            )}
+          </DropdownMenuContent>
 
-        }
-            </div>
+          
+
+        )}
+
+        
+      </DropdownMenu>
     </div>
-  )
+  );
 }
 
-export default Header
+export default Header;
