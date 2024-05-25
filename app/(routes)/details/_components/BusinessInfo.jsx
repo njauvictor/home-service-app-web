@@ -1,38 +1,73 @@
-import { Button } from '@/components/ui/button'
-import { Clock, Mail, MapPin, Share, User } from 'lucide-react'
-import Image from 'next/image'
-import React from 'react'
+import { Button } from '@/components/ui/button';
+import { Clock, Globe, Mail, MapPin, Share, User, Facebook, Twitter, Instagram } from 'lucide-react';
+import Image from 'next/image';
+import React from 'react';
+import useWindowSize from '@/hooks/useWindowSize';
 
-function BusinessInfo({business}) {
-  return business?.name&&(
-    <div className='md:flex gap-4 items-center'>
-      <Image src={business?.images[0]?.url}
-        alt={business.name}
-        width={150}
-        height={200}
-        className='rounded-full h-[150px]
-        object-cover'
-      />
-      <div className='flex justify-between items-center w-full'>
-      <div className='flex flex-col mt-4 md:mt-0 items-baseline gap-3'>
-        <h2 className='text-primary p-1 px-3
-        text-lg 
-        bg-purple-100 rounded-full'>{business?.category?.name}</h2>
-        <h2 className='text-[40px] font-bold'>{business.name}</h2>
-      <h2 className='flex gap-2 text-lg text-gray-500'><MapPin/> {business.address}</h2>
-      <h2 className='flex gap-2 text-lg text-gray-500'>
-        <Mail/>
-        {business?.email}</h2>
-      </div>
-      <div className='flex flex-col gap-5 items-end'>
-        <Button><Share/></Button>
-        <h2 className='flex gap-2 text-xl text-primary'><User/> {business.contactPerson} </h2>
-        <h2 className='flex gap-2 text-xl text-gray-500'><Clock/> Available 8:00 AM to 10:PM </h2>
-      
-      </div>
+function BusinessInfo({ business }) {
+  const { width } = useWindowSize();
+
+  const isMobile = width <= 768;
+
+  return business?.name && (
+    <div className='container mx-auto px-4 py-8'>
+      <div className='md:flex gap-8 items-start'>
+        <div className='flex-shrink-0 md:w-3/5 w-full'>
+          {isMobile ? (
+            <div className="grid grid-cols-1 gap-4">
+              {business.images.slice(0, 2).map((image, index) => (
+                <div key={index} className="w-full h-auto">
+                  <Image
+                    src={image.url}
+                    alt={business.name}
+                    width={300}
+                    height={200}
+                    className='rounded-lg object-cover w-full'
+                  />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="w-full h-auto">
+              <Image
+                src={business?.images[0]?.url}
+                alt={business.name}
+                width={600}
+                height={400}
+                className='rounded-lg object-cover w-full'
+              />
+            </div>
+          )}
+
+           </div>
+        
+        <div className='md:w-2/5 w-full flex flex-col ml-4'>
+          <div className='flex flex-col mt-2 md:mt-0 gap-4'>
+            <h2 className='text-primary p-1 px-3 text-lg bg-purple-100 rounded-full'>{business?.category?.name}</h2>
+            <h2 className='text-4xl font-bold'>{business.name}</h2>
+            <p className='text-lg text-gray-600 w2/3'>{business.smallDescription}</p>
+            <div className='flex flex-col md:flex-row md:flex-wrap gap-2'>
+              <div className='flex gap-2 items-center'><MapPin /><span className='text-sm-semi-bold text-gray-500'>{business.address}</span></div>
+              <div className='flex gap-2 items-center'><Mail /><span className='text-sm-semi-bold text-gray-500'>{business?.email}</span></div>
+              <div className='flex gap-2 items-center'><Globe /><span className='text-sm-semi-bold text-gray-500'>{business.website}</span></div>
+            </div>
+            <div className='flex gap-4 mt-2'>
+              <a href="https://facebook.com" className='text-gray-500 hover:text-gray-900'>
+                <Facebook />
+              </a>
+              <a href="https://twitter.com" className='text-gray-500 hover:text-gray-900'>
+                <Twitter />
+              </a>
+              <a href="https://instagram.com" className='text-gray-500 hover:text-gray-900'>
+                <Instagram />
+              </a>
+            </div>
+          </div>
+          
+        </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default BusinessInfo
+export default BusinessInfo;

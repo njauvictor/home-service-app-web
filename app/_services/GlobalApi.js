@@ -28,6 +28,9 @@ const getAllBusinessList=async()=>{
       businessLists {
         about
         address
+        smallDescription
+        phoneNumber
+        website
         category {
           name
         }
@@ -53,6 +56,9 @@ const getBusinessByCategory=async(category)=>{
           {name: "`+category+`"}}) {
         about
         address
+        smallDescription
+        phoneNumber
+        website
         category {
           name
         }
@@ -76,6 +82,9 @@ query GetBusinessById {
   businessList(where: {id: "`+id+`"}) {
     about
     address
+    smallDescription
+    phoneNumber
+    website
     category {
       name
     }
