@@ -36,7 +36,7 @@ function SuggestedBusinessList({business}) {
       <BookingSection business={business}>
         <Button className="flex gap-2 w-full">
         <NotebookPen/>
-        Book Appointment  
+        Contact  
         </Button> 
       </BookingSection>
       <div className='hidden md:block'>
