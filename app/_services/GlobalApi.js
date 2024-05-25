@@ -31,6 +31,9 @@ const getAllBusinessList=async()=>{
         smallDescription
         phoneNumber
         website
+        faceBook
+        instagram
+        whatsApp
         category {
           name
         }
@@ -59,6 +62,9 @@ const getBusinessByCategory=async(category)=>{
         smallDescription
         phoneNumber
         website
+        faceBook
+        instagram
+        whatsApp
         category {
           name
         }
@@ -85,6 +91,9 @@ query GetBusinessById {
     smallDescription
     phoneNumber
     website
+    faceBook
+    instagram
+    whatsApp
     category {
       name
     }

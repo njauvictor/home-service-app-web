@@ -6,11 +6,10 @@ import useWindowSize from '@/hooks/useWindowSize';
 
 function BusinessInfo({ business }) {
   const { width } = useWindowSize();
-
   const isMobile = width <= 768;
 
   return business?.name && (
-    <div className='container mx-auto px-4 py-8'>
+    <div className='container mx-auto py-2 md:py-4 px-4 md:px-0'>
       <div className='md:flex gap-8 items-start'>
         <div className='flex-shrink-0 md:w-3/5 w-full'>
           {isMobile ? (
@@ -20,8 +19,8 @@ function BusinessInfo({ business }) {
                   <Image
                     src={image.url}
                     alt={business.name}
-                    width={300}
-                    height={200}
+                    width={450}
+                    height={300}
                     className='rounded-lg object-cover w-full'
                   />
                 </div>
@@ -32,38 +31,36 @@ function BusinessInfo({ business }) {
               <Image
                 src={business?.images[0]?.url}
                 alt={business.name}
-                width={600}
-                height={400}
+                width={650}
+                height={500}
                 className='rounded-lg object-cover w-full'
               />
             </div>
           )}
+        </div>
 
-           </div>
-        
-        <div className='md:w-2/5 w-full flex flex-col ml-4'>
-          <div className='flex flex-col mt-2 md:mt-0 gap-4'>
-            <h2 className='text-primary p-1 px-3 text-lg bg-purple-100 rounded-full'>{business?.category?.name}</h2>
-            <h2 className='text-4xl font-bold'>{business.name}</h2>
-            <p className='text-lg text-gray-600 w2/3'>{business.smallDescription}</p>
+        <div className='md:w-2/5 w-full flex flex-col mt-4 md:mt-0 ml-0 md:ml-4'>
+          <div className='flex flex-col gap-2 md:gap-4'>
+            <h2 className='text-primary p-1 px-3 text-sm md:text-lg bg-purple-100 rounded-full'>{business?.category?.name}</h2>
+            <h2 className='text-2xl md:text-4xl font-bold text-primary'>{business.name}</h2>
+            <p className='text-sm md:text-lg text-gray-600 w-full mb-3'>{business.smallDescription}</p>
             <div className='flex flex-col md:flex-row md:flex-wrap gap-2'>
-              <div className='flex gap-2 items-center'><MapPin /><span className='text-sm-semi-bold text-gray-500'>{business.address}</span></div>
-              <div className='flex gap-2 items-center'><Mail /><span className='text-sm-semi-bold text-gray-500'>{business?.email}</span></div>
-              <div className='flex gap-2 items-center'><Globe /><span className='text-sm-semi-bold text-gray-500'>{business.website}</span></div>
+              <div className='flex gap-2 items-center'><MapPin /><span className='text-sm-semi-bold md:text-sm-semi-bold text-gray-500'>{business.address}</span></div>
+              <div className='flex gap-2 items-center'><Mail /><span className='text-sm-semi-bold md:text-sm-semi-bold text-gray-500'>{business?.email}</span></div>
+              <div className='flex gap-2 items-center mb-2'><Globe /><span className='text-sm-semi-bold md:text-sm-semi-bold text-gray-500'>{business.website}</span></div>
             </div>
-            <div className='flex gap-4 mt-2'>
-              <a href="https://facebook.com" className='text-gray-500 hover:text-gray-900'>
-                <Facebook />
+            <div className='flex gap-4 mt-3 md:mt-0'>
+              <a href={business.faceBook}>
+                <img src="/facebook.svg" alt="Facebook" className='w-6 h-6 md:w-7 md:h-7'/>
               </a>
-              <a href="https://twitter.com" className='text-gray-500 hover:text-gray-900'>
-                <Twitter />
+              <a href={business.instagram}>
+                <img src="/instagram.svg" alt="Instagram" className='w-6 h-6 md:w-7 md:h-7'/>
               </a>
-              <a href="https://instagram.com" className='text-gray-500 hover:text-gray-900'>
-                <Instagram />
+              <a href={business.whatsApp}>
+                <img src="/whatsapp.svg" alt="WhatsApp" className='w-6 h-6 md:w-7 md:h-7'/>
               </a>
             </div>
           </div>
-          
         </div>
       </div>
     </div>
