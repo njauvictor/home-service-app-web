@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
             <main>{children}</main>
                    
           </div>
-          <Footer />   
+          
          
         </NextAuthSessionProvider>
       </body>
