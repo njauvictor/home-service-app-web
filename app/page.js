@@ -6,6 +6,7 @@ import CategoryList from "./_components/CategoryList";
 import GlobalApi from "./_services/GlobalApi";
 import { useEffect, useState } from "react";
 import BusinessList from "./_components/BusinessList";
+import Features from "./_components/Features";
 
 
 export default function Home() {
@@ -42,6 +43,8 @@ export default function Home() {
     
       <BusinessList businessList={businessList}
       title={'Popular Business'} />
+
+    
     </div>
   );
 }
