@@ -68,13 +68,13 @@ function Header() {
         <Link href={'/'} className="text-inherit hover:text-primary">
           Home
         </Link>
-        <Link href={'/about'} className="text-inherit hover:text-primary">
+        <Link href={'/'} className="text-inherit hover:text-primary">
           About Us
         </Link>
-        <Link href={'/about'} className="text-inherit hover:text-primary">
+        <Link href={'/'} className="text-inherit hover:text-primary">
           MarketPlace
         </Link>
-        <Link href={'/services'} className="text-inherit hover:text-primary">
+        <Link href={'/'} className="text-inherit hover:text-primary">
           Business Registration
         </Link>
       </div>
